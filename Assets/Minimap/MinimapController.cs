@@ -111,7 +111,7 @@ public class MinimapController : MonoBehaviour
                 scrollViewRectTransform.pivot = halfVector2;
                 scrollViewRectTransform.anchoredPosition = Vector2.zero;
                 currentMiniMapMode = MinimapMode.Fullscreen;
-                contentRectTransform.transform.localScale = Vector3.one;
+                contentRectTransform.transform.localScale = Vector3.one * 1.3f; // 1.3f looks good here but it could be anything
                 break;
         }
     }
