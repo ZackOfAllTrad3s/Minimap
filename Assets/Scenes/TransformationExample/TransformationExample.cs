@@ -26,6 +26,13 @@ public class TransformationExample : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI mapPlayerPositionField;
 
+    [SerializeField]
+    private TextMeshProUGUI playerPos;
+    [SerializeField]
+    private TextMeshProUGUI mapPos;
+    [SerializeField]
+    private TextMeshProUGUI calculation;
+
 
     [SerializeField]
     private RectTransform minimapRectTransform;
@@ -64,5 +71,8 @@ public class TransformationExample : MonoBehaviour
         float mapScale = minimapRectTransform.transform.localScale.x;
         // we simply move the map in the opposite direction the player moved, scaled by the mapscale
         minimapRectTransform.anchoredPosition = (-playerMapIcon.anchoredPosition * mapScale);
+        playerPos.text = $"Player AnchoredPosition: {playerMapIcon.anchoredPosition}";
+        mapPos.text = $"Minimap AnchoredPosition: {(-playerMapIcon.anchoredPosition * mapScale)}";
+        calculation.text = $"<color=orange>Player AnchordPosition{playerMapIcon.anchoredPosition}</color>   *   <color=purple>MapScale({mapScale})</color>   *   -1   =   <color=#00ff00ff>Minimap AnchoredPosition{(-playerMapIcon.anchoredPosition * mapScale)}</color>";
     }
 }
