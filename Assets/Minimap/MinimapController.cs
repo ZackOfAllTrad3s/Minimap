@@ -36,7 +36,6 @@ public class MinimapController : MonoBehaviour
 
     Matrix4x4 transformationMatrix;
 
-    Vector2 halfVector2 = new Vector2(0.5f, 0.5f);
     private MinimapMode currentMiniMapMode = MinimapMode.Mini;
     private MinimapIcon followIcon;
     private Vector2 scrollViewDefaultSize;
@@ -89,8 +88,11 @@ public class MinimapController : MonoBehaviour
     }
 
 
+    private Vector2 halfVector2 = new Vector2(0.5f, 0.5f);
     public void SetMinimapMode(MinimapMode mode)
     {
+        const float defaultScaleWhenFullScreen = 1.3f; // 1.3f looks good here but it could be anything
+        
         if (mode == currentMiniMapMode)
             return;
 
@@ -111,7 +113,7 @@ public class MinimapController : MonoBehaviour
                 scrollViewRectTransform.pivot = halfVector2;
                 scrollViewRectTransform.anchoredPosition = Vector2.zero;
                 currentMiniMapMode = MinimapMode.Fullscreen;
-                contentRectTransform.transform.localScale = Vector3.one * 1.3f; // 1.3f looks good here but it could be anything
+                contentRectTransform.transform.localScale = Vector3.one * defaultScaleWhenFullScreen;
                 break;
         }
     }
@@ -175,7 +177,7 @@ public class MinimapController : MonoBehaviour
 
         //  {scaleRatio.x,   0,           0,   translation.x},
         //  {  0,        scaleRatio.y,    0,   translation.y},
-        //  {  0,            0,           0,            0},
-        //  {  0,            0,           0,            0}
+        //  {  0,            0,           1,            0},
+        //  {  0,            0,           0,            1}
     }
 }
